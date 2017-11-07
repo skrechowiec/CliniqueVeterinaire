@@ -8,7 +8,7 @@ public class TestBll {
 
 	public static void main(String[] args) {
 
-		CatalogueManager catalogueManager = CatalogueManager.getInstance();
+		PersonnelManager catalogueManager = PersonnelManager.getInstance();
 		//Instanciation du jeu d'essai 
 		Personnel p1 = new Personnel(  "Nomkcc", "MdPKCC","adm", false);
 		Personnel p2 = new Personnel(  "Nomkcc2", "MdPKCC2","sec", false);

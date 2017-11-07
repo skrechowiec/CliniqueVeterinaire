@@ -19,21 +19,16 @@ public class ListeDuPersonnelPourTableau extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
 	private List<Personnel> listeDuPersonnel = new ArrayList<Personnel>();
-	private PersonnelDAO personnelDAO = FactoryDAO.getPersonnelDAO();
-
-    private final String[] entetes = {"Nom", "Metier", "Mot de passe", "Archivage"};
+	private final String[] entetes = {"Code Perso", "Nom", "Metier", "Mot de passe", "Archivage"};
  
     public ListeDuPersonnelPourTableau() {
         super();
+       }
  
-        try {
-			listeDuPersonnel = personnelDAO.selectAll();
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    public void setData(List<Personnel> personnels){
+    	listeDuPersonnel = personnels;
     }
- 
+    
     public int getRowCount() {
         return listeDuPersonnel.size();
     }
@@ -48,13 +43,15 @@ public class ListeDuPersonnelPourTableau extends AbstractTableModel {
  
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
-            case 0:
+        	case 0:
+        		return listeDuPersonnel.get(rowIndex).getCodePersonnel();
+        	case 1:
                 return listeDuPersonnel.get(rowIndex).getNom();
-            case 1:
-                return listeDuPersonnel.get(rowIndex).getMetier();
             case 2:
-                return listeDuPersonnel.get(rowIndex).getMotDePasse();
+                return listeDuPersonnel.get(rowIndex).getMetier();
             case 3:
+                return listeDuPersonnel.get(rowIndex).getMotDePasse();
+            case 4:
                 return listeDuPersonnel.get(rowIndex).isArchive();
             default:
                 return null; //Ne devrait jamais arriver

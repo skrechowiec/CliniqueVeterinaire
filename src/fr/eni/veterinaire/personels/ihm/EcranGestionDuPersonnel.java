@@ -13,8 +13,8 @@ public class EcranGestionDuPersonnel {
 			public void run() {
 				//Lancer l'application
 				//JFrame frame = new EcranTousLesArticles();
-				JFrame frame = new EcranListeDuPersonnel();
-				frame.setVisible(true);
+				JFrame ecranListeDuPersonnel = new EcranListeDuPersonnel();
+				ecranListeDuPersonnel.setVisible(true);
 
 			}
 

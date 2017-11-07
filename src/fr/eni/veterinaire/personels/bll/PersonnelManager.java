@@ -8,13 +8,13 @@ import fr.eni.veterinaire.personels.bo.Personnel;
 import fr.eni.veterinaire.personels.dal.DALException;
 import fr.eni.veterinaire.personels.dal.FactoryDAO;
 
-public class CatalogueManager {
+public class PersonnelManager {
 
-	private static CatalogueManager instance;
+	private static PersonnelManager instance;
 
-	public static CatalogueManager getInstance(){
+	public static PersonnelManager getInstance(){
 		if (instance == null){
-			instance = new CatalogueManager();
+			instance = new PersonnelManager();
 		}
 		return instance;
 	}
@@ -23,13 +23,14 @@ public class CatalogueManager {
 	private List<Personnel> listeDuPersonnel = new ArrayList<>();
 	private static boolean validation = true;
 
-	private CatalogueManager(){ 
+	//Selection du personnel
+	public List<Personnel> listeDuPersonnel(){ 
 		try {
 			listeDuPersonnel= personnelDAO.selectAll();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return listeDuPersonnel;
 	}
 	//Selection d'un personnel
 	public Personnel selectionUnPersonnel(int codePerso) throws BLLException {
@@ -47,6 +48,8 @@ public class CatalogueManager {
 		return listeDuPersonnel.get(codePerso) ;
 	}
 
+	
+	
 	//ajouter un personnel
 	public  void ajouterPersonnel(Personnel personnelAAjouter) throws BLLException {
 		try {
@@ -95,6 +98,7 @@ public class CatalogueManager {
 		}
 	}
 
+	
 	public boolean validationPersonnel(Personnel personnel) throws BLLException {
 		if (personnel.getNom()== null || personnel.getNom().trim().length() == 0){
 			System.out.println("Le nom est obligatoire");
