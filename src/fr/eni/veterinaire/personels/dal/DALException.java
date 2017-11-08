@@ -1,6 +1,15 @@
+// codé par kcc
+// version 1
+// permet la compréhension d'erreur spécifiques.
+
 package fr.eni.veterinaire.personels.dal;
 
 public class DALException extends Exception {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//Constructeurs
 	public DALException() {
 		super();

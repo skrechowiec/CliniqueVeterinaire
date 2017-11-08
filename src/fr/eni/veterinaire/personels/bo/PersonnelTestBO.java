@@ -1,3 +1,7 @@
+// codé par kcc
+// version 1
+// permet le test de création et d'ajout dans une liste de personnel 
+
 package fr.eni.veterinaire.personels.bo;
 
 import java.util.ArrayList;

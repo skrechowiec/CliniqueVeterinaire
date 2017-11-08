@@ -1,3 +1,7 @@
+// codé par kcc
+// version 1
+// permet d'effectuer la liaison entre PersonnelDAOJdbcImpl et PersonnelTestDAL;
+
 package fr.eni.veterinaire.personels.dal;
 
 import java.util.List;
@@ -16,4 +20,6 @@ public interface PersonnelDAO {
 		
 	public abstract void  delete(int codePers) throws DALException ;
 
+	public abstract void  deleteArchive(int codePers) throws DALException ;
+	
 }

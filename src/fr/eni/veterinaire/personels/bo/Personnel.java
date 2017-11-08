@@ -1,6 +1,10 @@
+// codé par kcc 
+// version 1
+// défini la class personnel pour les utilisateurs
+
 package fr.eni.veterinaire.personels.bo;
 
-public class Personnel {
+public class Personnel { //class personnel
 
 	//attributs
 	private int CodePersonnel;
@@ -10,7 +14,7 @@ public class Personnel {
 	private boolean Archive;
 
 	// constructeurs
-	public Personnel (){
+	public Personnel (){ //
 
 	}
 	public Personnel(String nom, String motDePasse, String metier, boolean archive) {

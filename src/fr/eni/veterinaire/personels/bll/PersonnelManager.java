@@ -1,3 +1,7 @@
+// codé par kcc
+// version 1
+// permet la liaison entre l'IHM et la BLL
+
 package fr.eni.veterinaire.personels.bll;
 
 import java.util.ArrayList;
@@ -18,20 +22,21 @@ public class PersonnelManager {
 		}
 		return instance;
 	}
-	private PersonnelDAO personnelDAO = FactoryDAO.getPersonnelDAO();
 
 	private List<Personnel> listeDuPersonnel = new ArrayList<>();
 	private static boolean validation = true;
+	private PersonnelDAO personnelDAO = FactoryDAO.getPersonnelDAO();
 
 	//Selection du personnel
 	public List<Personnel> listeDuPersonnel(){ 
-		try {
-			listeDuPersonnel= personnelDAO.selectAll();
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
-		return listeDuPersonnel;
-	}
+  		try {
+  			listeDuPersonnel= personnelDAO.selectAll();
+  		} catch (DALException e) {
+ 			// TODO Auto-generated catch block
+  			e.printStackTrace();
+  		}
+ 		return listeDuPersonnel;
+  	}
 	//Selection d'un personnel
 	public Personnel selectionUnPersonnel(int codePerso) throws BLLException {
 		System.out.println("***************");

@@ -1,3 +1,7 @@
+// codé par kcc
+// version 1
+// réalise les différentes requetes SQL
+
 package fr.eni.veterinaire.personels.dal.jdbc;
 
 import java.sql.Connection;
@@ -5,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +29,7 @@ public class PersonnelDAOJdbcImpl implements PersonnelDAO{
 	public static final String requeteInsert = "insert into Personels(Nom, MotPasse, Metiers, " +
 			" Archive) values ( ?,?,?,?)";
 	public static final String requeteDelete = " delete from  Personels where CodePers = ? ";
+	public static final String requeteDeleteArchive = " delete from  Personels where CodePers = ? and Archive = 1";
 
 	public Connection connexion = null;
 
@@ -188,7 +192,7 @@ public class PersonnelDAOJdbcImpl implements PersonnelDAO{
 		} 	
 	}
 	
-	//suppression d'un personnel
+	//suppression d'un personnel 
 	public void  delete(int codePers){
 
 		Connection connexion = null;
@@ -220,5 +224,37 @@ public class PersonnelDAOJdbcImpl implements PersonnelDAO{
 			}
 		} 
 	}
+	//suppression d'un personnel archivé 
+		public void  deleteArchive(int codePers){
+
+			Connection connexion = null;
+			PreparedStatement declaration = null;
+
+			try {
+
+				connexion = JdbcTools.getConnection();
+
+				declaration = connexion.prepareStatement(requeteDeleteArchive);
+				declaration.setInt(1, codePers);
+
+				declaration .executeUpdate();
+
+			}
+			catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
+			finally 
+			{
+				try {	
+					if (connexion != null){
+						connexion.close();
+					}
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} 
+		}
 
 }

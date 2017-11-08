@@ -1,3 +1,7 @@
+// codé par kcc
+// version 1
+// permet l'utilisation de paramètres pour la connexion SQL 
+
 package fr.eni.veterinaire.personels.dal.jdbc;
 
 

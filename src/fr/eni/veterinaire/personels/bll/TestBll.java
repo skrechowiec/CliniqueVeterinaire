@@ -1,6 +1,9 @@
+// codé par kcc
+// version 1
+// permet le test de la BLL en utilisant le PersonnelManager
+
 package fr.eni.veterinaire.personels.bll;
 
-import java.util.List;
 
 import fr.eni.veterinaire.personels.bo.Personnel;
 
@@ -53,6 +56,13 @@ public class TestBll {
 			System.out.println("--------------------------------------------- ");
 			//
 
+			//Suppression d'un personnel archivé
+			System.out.println("\nSuppression du personnel  : " + p3.toString());
+			catalogueManager.supprimerUnPersonnel(p3.getCodePersonnel());
+			System.out.println("Liste des articles après suppression : "  );
+			System.out.println(catalogueManager.getlisteDuPersonnel());
+			System.out.println("--------------------------------------------- ");
+			//
 
 		} //catch (DALException e) {
 		catch (Exception e) {
