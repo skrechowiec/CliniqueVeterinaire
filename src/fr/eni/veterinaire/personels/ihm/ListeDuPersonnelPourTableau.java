@@ -44,7 +44,8 @@ public class ListeDuPersonnelPourTableau extends AbstractTableModel {
             case 1:
                 return listeDuPersonnel.get(rowIndex).getMetier();
             case 2:
-                return listeDuPersonnel.get(rowIndex).getMotDePasse();
+            	return "*********";
+                //return listeDuPersonnel.get(rowIndex).getMotDePasse();
             default:
                 return null; //Ne devrait jamais arriver
         }

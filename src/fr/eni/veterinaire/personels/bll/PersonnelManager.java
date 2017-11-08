@@ -26,35 +26,40 @@ public class PersonnelManager {
 	private List<Personnel> listeDuPersonnel = new ArrayList<>();
 	private static boolean validation = true;
 	private PersonnelDAO personnelDAO = FactoryDAO.getPersonnelDAO();
-
+	private int numeroDuPersonnel;
 	//Selection du personnel
 	public List<Personnel> listeDuPersonnel(){ 
-  		try {
-  			listeDuPersonnel= personnelDAO.selectAll();
-  		} catch (DALException e) {
- 			// TODO Auto-generated catch block
-  			e.printStackTrace();
-  		}
- 		return listeDuPersonnel;
-  	}
+		try {
+			listeDuPersonnel= personnelDAO.selectAll();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listeDuPersonnel;
+	}
+
 	//Selection d'un personnel
 	public Personnel selectionUnPersonnel(int codePerso) throws BLLException {
-//		System.out.println("***************");
-//		System.out.println(codePerso - 1);
-//		System.out.println(listeDuPersonnel.get(codePerso - 2));
-//		System.out.println("***************");
-//		System.out.println(codePerso);
-//		System.out.println(listeDuPersonnel.get(codePerso -1));
-//		System.out.println("***************");
-//		System.out.println(codePerso +1 );
-//		System.out.println(listeDuPersonnel.get(codePerso));
-//		System.out.println("***************");
-
 		return listeDuPersonnel.get(codePerso -1) ;
 	}
 
-	
-	
+	//Selection d'un personnel par le nom
+	public Personnel selectionUnPersonnelParLeNom(String nom) throws BLLException {
+		try {
+			listeDuPersonnel= personnelDAO.selectAll();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int a=0; a<listeDuPersonnel.size(); a++){
+			if (nom.equals(listeDuPersonnel.get(a).getNom())){
+				numeroDuPersonnel = a ;
+			}
+		}
+		return listeDuPersonnel.get(numeroDuPersonnel) ;
+	}
+
+
 	//ajouter un personnel
 	public  void ajouterPersonnel(Personnel personnelAAjouter) throws BLLException {
 		try {
@@ -117,7 +122,7 @@ public class PersonnelManager {
 		}
 	}
 
-	
+
 	public boolean validationPersonnel(Personnel personnel) throws BLLException {
 		if (personnel.getNom()== null || personnel.getNom().trim().length() == 0){
 			System.out.println("Le nom est obligatoire");
@@ -139,17 +144,17 @@ public class PersonnelManager {
 		return personnelDAO;
 	}
 
-//	public void setArticleDAO(PersonnelDAO personnelDAO) {
-//		personnelDAO = personnelDAO;
-//	}
+	//	public void setArticleDAO(PersonnelDAO personnelDAO) {
+	//		personnelDAO = personnelDAO;
+	//	}
 
 	public List<Personnel> getlisteDuPersonnel() {
 		return listeDuPersonnel;
 	}
 
-//	public void setlisteDuPersonnel(List<Personnel> getlisteDuPersonnel) {
-//		listeDuPersonnel = listeDuPersonnel;
-//	}
+	//	public void setlisteDuPersonnel(List<Personnel> getlisteDuPersonnel) {
+	//		listeDuPersonnel = listeDuPersonnel;
+	//	}
 
 	@Override
 	public String toString() {

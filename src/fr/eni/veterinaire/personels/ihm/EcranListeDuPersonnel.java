@@ -125,11 +125,11 @@ public class EcranListeDuPersonnel extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			int[] selection = tableau.getSelectedRows();
 			int ligne=tableau.getSelectedRow();
-			int code = (int) tableau.getValueAt(ligne,0);
+			String nom = (String) tableau.getValueAt(ligne,0);
 
 			for(int i = selection.length - 1; i >= 0; i--){
 				try {
-					personelAModifier = PersonnelManager.getInstance().selectionUnPersonnel(code);
+					personelAModifier = PersonnelManager.getInstance().selectionUnPersonnelParLeNom(nom);
 				}	catch (BLLException e1) {
 					e1.printStackTrace();
 				}
