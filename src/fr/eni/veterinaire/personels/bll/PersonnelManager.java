@@ -39,18 +39,18 @@ public class PersonnelManager {
   	}
 	//Selection d'un personnel
 	public Personnel selectionUnPersonnel(int codePerso) throws BLLException {
-		System.out.println("***************");
-		System.out.println(codePerso - 1);
-		System.out.println(listeDuPersonnel.get(codePerso - 1));
-		System.out.println("***************");
-		System.out.println(codePerso);
-		System.out.println(listeDuPersonnel.get(codePerso));
-		System.out.println("***************");
-		System.out.println(codePerso +1 );
-		System.out.println(listeDuPersonnel.get(codePerso + 1));
-		System.out.println("***************");
+//		System.out.println("***************");
+//		System.out.println(codePerso - 1);
+//		System.out.println(listeDuPersonnel.get(codePerso - 2));
+//		System.out.println("***************");
+//		System.out.println(codePerso);
+//		System.out.println(listeDuPersonnel.get(codePerso -1));
+//		System.out.println("***************");
+//		System.out.println(codePerso +1 );
+//		System.out.println(listeDuPersonnel.get(codePerso));
+//		System.out.println("***************");
 
-		return listeDuPersonnel.get(codePerso) ;
+		return listeDuPersonnel.get(codePerso -1) ;
 	}
 
 	
@@ -103,6 +103,20 @@ public class PersonnelManager {
 		}
 	}
 
+	public void supprimerUnPersonnelParLeNom(String nomDuPersonnelASupprimer) throws BLLException {
+		try {
+			personnelDAO.deleteParLeNom(nomDuPersonnelASupprimer);
+		} catch (DALException e){
+			throw new BLLException("Erreur de suppression", e);
+		}
+		try{
+			listeDuPersonnel = personnelDAO.selectAll();
+		}
+		catch (DALException e) {
+			throw new BLLException("Erreur de création de catalogue", e);
+		}
+	}
+
 	
 	public boolean validationPersonnel(Personnel personnel) throws BLLException {
 		if (personnel.getNom()== null || personnel.getNom().trim().length() == 0){
@@ -125,17 +139,17 @@ public class PersonnelManager {
 		return personnelDAO;
 	}
 
-	public void setArticleDAO(PersonnelDAO personnelDAO) {
-		personnelDAO = personnelDAO;
-	}
+//	public void setArticleDAO(PersonnelDAO personnelDAO) {
+//		personnelDAO = personnelDAO;
+//	}
 
 	public List<Personnel> getlisteDuPersonnel() {
 		return listeDuPersonnel;
 	}
 
-	public void setlisteDuPersonnel(List<Personnel> getlisteDuPersonnel) {
-		listeDuPersonnel = listeDuPersonnel;
-	}
+//	public void setlisteDuPersonnel(List<Personnel> getlisteDuPersonnel) {
+//		listeDuPersonnel = listeDuPersonnel;
+//	}
 
 	@Override
 	public String toString() {

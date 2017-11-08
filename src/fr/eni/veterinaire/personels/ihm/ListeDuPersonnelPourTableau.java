@@ -1,15 +1,11 @@
 package fr.eni.veterinaire.personels.ihm;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
 import fr.eni.veterinaire.personels.bo.Personnel;
-import fr.eni.veterinaire.personels.dal.DALException;
-import fr.eni.veterinaire.personels.dal.FactoryDAO;
-import fr.eni.veterinaire.personels.dal.PersonnelDAO;
 
 
 public class ListeDuPersonnelPourTableau extends AbstractTableModel {
@@ -19,7 +15,7 @@ public class ListeDuPersonnelPourTableau extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
 	private List<Personnel> listeDuPersonnel = new ArrayList<Personnel>();
-	private final String[] entetes = {"Code Perso", "Nom", "Metier", "Mot de passe", "Archivage"};
+	private final String[] entetes = {"Nom", "Metier", "Mot de passe"};
  
     public ListeDuPersonnelPourTableau() {
         super();
@@ -44,15 +40,11 @@ public class ListeDuPersonnelPourTableau extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
         	case 0:
-        		return listeDuPersonnel.get(rowIndex).getCodePersonnel();
-        	case 1:
-                return listeDuPersonnel.get(rowIndex).getNom();
-            case 2:
+        	    return listeDuPersonnel.get(rowIndex).getNom();
+            case 1:
                 return listeDuPersonnel.get(rowIndex).getMetier();
-            case 3:
+            case 2:
                 return listeDuPersonnel.get(rowIndex).getMotDePasse();
-            case 4:
-                return listeDuPersonnel.get(rowIndex).isArchive();
             default:
                 return null; //Ne devrait jamais arriver
         }

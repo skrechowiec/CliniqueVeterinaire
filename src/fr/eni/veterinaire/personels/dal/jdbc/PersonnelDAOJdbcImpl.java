@@ -30,7 +30,8 @@ public class PersonnelDAOJdbcImpl implements PersonnelDAO{
 			" Archive) values ( ?,?,?,?)";
 	public static final String requeteDelete = " delete from  Personels where CodePers = ? ";
 	public static final String requeteDeleteArchive = " delete from  Personels where CodePers = ? and Archive = 1";
-
+	public static final String requeteDeleteParLeNom = " delete from  Personels where Nom = ? ";
+	
 	public Connection connexion = null;
 
 	//fermeture de la connexion
@@ -130,9 +131,8 @@ public class PersonnelDAOJdbcImpl implements PersonnelDAO{
 
 			resultat = declaration.executeQuery();
 			
-			resultat.next();
+			resultat.first();
 			resultatRequete = new Personnel(resultat.getInt("codePers"), resultat.getString("Nom"), resultat.getString("MotPasse"), resultat.getString ("Metiers"), resultat.getBoolean("Archive")); 
-			
 		
 		} 
 		catch (SQLException e) {
@@ -148,7 +148,6 @@ public class PersonnelDAOJdbcImpl implements PersonnelDAO{
 				e.printStackTrace();
 			}
 		} 
-
 		return 	resultatRequete;
 	}
 
@@ -257,4 +256,36 @@ public class PersonnelDAOJdbcImpl implements PersonnelDAO{
 			} 
 		}
 
+		//suppression d'un personnel par le nom
+		public void  deleteParLeNom(String nom){
+
+			Connection connexion = null;
+			PreparedStatement declaration = null;
+
+			try {
+
+				connexion = JdbcTools.getConnection();
+
+				declaration = connexion.prepareStatement(requeteDeleteParLeNom);
+				declaration.setString(1, nom);
+
+				declaration .executeUpdate();
+
+			}
+			catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
+			finally 
+			{
+				try {	
+					if (connexion != null){
+						connexion.close();
+					}
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} 
+		}
 }

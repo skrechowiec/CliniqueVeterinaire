@@ -20,6 +20,8 @@ public interface PersonnelDAO {
 		
 	public abstract void  delete(int codePers) throws DALException ;
 
+	public abstract void  deleteParLeNom(String nom) throws DALException ;
+
 	public abstract void  deleteArchive(int codePers) throws DALException ;
 	
 }
